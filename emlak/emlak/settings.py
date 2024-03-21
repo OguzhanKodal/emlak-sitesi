@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-u-st&a*4%%8#zb!-9c)-_9hi_7h*xl8gr%*_23w0$!jr5wv-2y
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -37,6 +37,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'emlak',
+    'kiralikdaireler',
+    'satilikdaireler',
+    'django_bootstrap5'
 ]
 
 MIDDLEWARE = [
@@ -54,7 +58,7 @@ ROOT_URLCONF = 'emlak.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'emlak/templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

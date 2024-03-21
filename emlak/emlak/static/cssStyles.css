@@ -1,0 +1,122 @@
+/* Temel Renkler */
+:root {
+    --primary-color: #0056b3; /* Daha koyu bir mavi tonu */
+    --secondary-color: #6c757d; /* Gri tonu */
+    --accent-color: #ffc107; /* Altın sarısı bir renk, vurgular için */
+}
+
+/* Genel Stiller */
+body {
+    background-color: #ffffff;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #333;
+}
+
+.navbar {
+    background-color: var(--primary-color);
+    color: #fff;
+}
+
+.navbar-brand img {
+    transition: transform 0.3s ease;
+}
+
+.navbar-brand img:hover {
+    transform: rotate(360deg);
+}
+
+.navbar-dark .navbar-toggler {
+    border-color: #fff;
+}
+
+
+.navbar-nav .nav-link {
+    color: rgba(255, 255, 255, 0.75);
+    transition: color 0.2s;
+}
+
+.navbar-nav .nav-link:hover, .navbar-nav .nav-link.active {
+    border-color: var(--accent-color);
+    color: var(--accent-color);
+}
+
+/* Buton Stilleri */
+.btn-outline-dark {
+    border-color: var(--accent-color);
+    color: var(--accent-color);
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.btn-outline-dark:hover {
+    background-color: var(--accent-color);
+    color: #ffffff;
+}
+
+/* Resim ve Form Konteyneri Stilleri */
+.image-container div:hover, .form-container div:hover {
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Ekstra Stiller */
+.container, .navbar, .dropdown-menu {
+    border-radius: 10px;
+}
+
+.dropdown-menu {
+    background-color: var(--primary-color);
+    border: none;
+}
+.container {
+    margin-top: 20px;
+    text-align: center;
+}
+
+/* Resim Konteyneri */
+.image-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.image-container div {
+    margin: 0 20px;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.image-container div:hover {
+    transform: scale(1.1);
+}
+
+.image-container img {
+    width: 250px;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.image-container p {
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+  /* Carousel styling */
+  .carousel-item {
+    height: 300px;
+  }
+  .carousel-item img {
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* Card styling */
+  .card-container {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 15px;
+  }
+  .card {
+    width: 25%; /* Adjust card width as per requirement */
+    margin: 0; /* Remove default margin */
+  }

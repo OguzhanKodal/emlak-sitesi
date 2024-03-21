@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    {% load django_bootstrap5 %} {% bootstrap_css %} {% bootstrap_javascript %}
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Emlak Sitesi - Anasayfa</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'cssStyles.css' %}" />
+</head>
+<body>
+    <nav class="navbar navbar-expand-md navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+                <img src="{% static 'logo.png' %}" alt="logo" class="d-inline-block align-text-top" />
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="d-flex ms-auto" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="navbar-text ms-2 me-2">
+                        <a class="nav-link active" aria-current="page" href="/">Anasayfa</a>
+                    </li>
+                    <!-- Diğer menü öğeleri -->
+                </ul>
+                <div class="d-flex ms-auto">
+                    {% if user.is_authenticated %}
+                    <span class="navbar-text ms-3 me-2">
+                        <a href="#" class="btn btn-outline-dark custom-hover">Hoşgeldin, {{ user.username }}</a>
+                    </span>
+                    <span class="navbar-text ms-2 me-2">
+                        <a href="../logout" class="btn btn-outline-dark custom-hover">Çıkış Yap</a>
+                    </span>
+                    {% else %}
+                    <span class="navbar-text me-2">
+                        <a href="../login" class="btn btn-outline-dark ms-2 custom-hover">Giriş Yap</a>
+                    </span>
+                    <span class="navbar-text ms-2">
+                        <a href="../register" class="btn btn-outline-dark ms-2 custom-hover">Kayıt Ol</a>
+                    </span>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </nav>
+    {% block govde %} {% endblock %}
+    <script src="{% static 'js/scripts.js' %}"></script>
+</body>
+</html>
