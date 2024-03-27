@@ -7,7 +7,7 @@
 
 /* Genel Stiller */
 body {
-    background-color: #ffffff;
+    background-color: #fff4d2;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: #333;
 }
@@ -19,6 +19,10 @@ body {
 
 .navbar-brand img {
     transition: transform 0.3s ease;
+    width: 70px;
+    height: 70px;
+    object-fit: cover;
+    border-radius: 50%;
 }
 
 .navbar-brand img:hover {
@@ -59,7 +63,7 @@ body {
 
 /* Ekstra Stiller */
 .container, .navbar, .dropdown-menu {
-    border-radius: 10px;
+    border-radius: 0 !important;
 }
 
 .dropdown-menu {
@@ -75,7 +79,7 @@ body {
 .image-container {
     display: flex;
     justify-content: center;
-    margin-top: 30px;
+    margin-top: 30;
 }
 
 .image-container div {
@@ -103,7 +107,7 @@ body {
 
   /* Carousel styling */
   .carousel-item {
-    height: 300px;
+    height: 350px;
   }
   .carousel-item img {
     height: 100%;
