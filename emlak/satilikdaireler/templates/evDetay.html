@@ -1,0 +1,45 @@
+{% extends "master.html" %}
+{% block govde %}
+{% load static %}
+
+<link href="{% static 'satilikcard.css' %}" rel="stylesheet">
+
+<div class="container mt-4">
+    <div class="card mb-3">
+        <div class="card-header">
+            İlan Detayları
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">{{ daire.sokak }} - {{ daire.odaSayi }}</h5>
+            <p class="card-text">
+                Fiyat: {{ daire.fiyat }} TL<br>
+                Metrekare: {{ daire.m2 }} m²<br>
+                Aktif: {{ daire.aktiflik|yesno:"Evet,Hayır" }}
+            </p>
+            <!-- Bağlantıyı Buraya Ekleyin -->
+            <a href="{% url 'satilikdaireler:evDetay' ilanNo=daire.ilanNo %}">İlan Detaylarına Git</a>
+        </div>
+    </div>
+
+    {% if satililiklar %}
+    <h3>İlanla İlgili Diğer Detaylar</h3>
+    <div class="list-group">
+        {% for detay in satililiklar %}
+        <a href="#" class="list-group-item list-group-item-action">
+            Bina Yaşı: {{ detay.binaYas }}<br>
+            Kat Sayısı: {{ detay.katSayi }}<br>
+            Isıtma Tipi: {{ detay.isitma }}<br>
+            Otopark: {{ detay.otopark|yesno:"Var,Yok" }}<br>
+            İlan Tarihi: {{ detay.ilanTarih }}<br>
+            Tapu Durumu: {{ detay.tapuDurum }}<br>
+            Eşyalı: {{ detay.esya|yesno:"Evet,Hayır" }}<br>
+            Asansör: {{ detay.asonsor|yesno:"Var,Yok" }}<br>
+            Balkon: {{ detay.balkon|yesno:"Var,Yok" }}<br>
+            Aidat: {{ detay.aidat }} TL
+        </a>
+        {% endfor %}
+    </div>
+    {% endif %}
+</div>
+
+{% endblock %}

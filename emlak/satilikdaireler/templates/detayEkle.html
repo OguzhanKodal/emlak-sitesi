@@ -1,0 +1,73 @@
+{% extends "master.html" %}
+{% block govde %}
+{% load static %}
+
+<link href="{% static 'styles.css' %}" rel="stylesheet">
+
+<div class="container mt-4">
+    <h2>Detay Ekle</h2>
+    <form method="post" action="{% url 'satilikdaireler:detayEkle' ilanNo=ilan_id %}">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="binaYasi" class="form-label">Bina Yaşı</label>
+            <input type="number" class="form-control" id="binaYasi" name="binaYasi" required>
+        </div>
+        <div class="mb-3">
+            <label for="katSayisi" class="form-label">Kat Sayısı</label>
+            <input type="number" class="form-control" id="katSayisi" name="katSayisi" required>
+        </div>
+        <div class="mb-3">
+            <label for="kati" class="form-label">Bulunduğu Kat</label>
+            <input type="number" class="form-control" id="kati" name="kati" required>
+        </div>
+        <div class="mb-3">
+            <label for="isitmasi" class="form-label">Isıtma Tipi</label>
+            <input type="text" class="form-control" id="isitmasi" name="isitmasi" required>
+        </div>
+        <div class="mb-3">
+            <label for="otoparki" class="form-label">Otopark</label>
+            <input type="text" class="form-control" id="otoparki" name="otoparki" required>
+        </div>
+        <div class="mb-3">
+            <label for="ilanTarihi" class="form-label">İlan Tarihi</label>
+            <input type="date" class="form-control" id="ilanTarihi" name="ilanTarihi" required>
+        </div>
+        <div class="mb-3">
+            <label for="tapudurumu" class="form-label">Tapu Durumu</label>
+            <input type="text" class="form-control" id="tapudurumu" name="tapudurumu" required>
+        </div>
+        <div class="mb-3">
+            <label for="esyalimi" class="form-label">Eşyalı mı?</label>
+            <select class="form-control" id="esyalimi" name="esyalimi">
+                <option value="Evet">Evet</option>
+                <option value="Hayır">Hayır</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="asonsormu" class="form-label">Asansör</label>
+            <select class="form-control" id="asonsormu" name="asonsormu">
+                <option value="Var">Var</option>
+                <option value="Yok">Yok</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="balkonmu" class="form-label">Balkon</label>
+            <select class="form-control" id="balkonmu" name="balkonmu">
+                <option value="Var">Var</option>
+                <option value="Yok">Yok</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="aidati" class="form-label">Aidat (TL)</label>
+            <input type="number" class="form-control" id="aidati" name="aidati" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Detayları Ekle</button>
+    </form>
+    {% if guncellendimi == "True" %}
+    <div class="alert alert-success" role="alert">
+        Detaylar başarıyla eklendi!
+    </div>
+    {% endif %}
+</div>
+
+{% endblock %}

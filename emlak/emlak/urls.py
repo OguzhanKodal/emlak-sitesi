@@ -24,10 +24,19 @@ urlpatterns = [
 ]
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path,include
 from . import views # views dosyasını import ediyoruz
 
+
 urlpatterns = [
-    path('', views.anasayfa), # anasayfa fonksiyonunu çağırıyoruz
+    path('', views.anasayfa, name = 'anasayfa'), # anasayfa fonksiyonunu çağırıyoruz
+    path('kiralikevler/',include('kiralikdaireler.urls')),
+    path('satilikevler/',include('satilikdaireler.urls')),
+    path('',views.anasayfa),
     path('admin/', admin.site.urls),
+    path('login',views.user_login),
+    path('register',views.user_register),
+    path('logout',views.user_logout),
+    
 ]
+

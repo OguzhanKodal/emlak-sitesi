@@ -1,0 +1,40 @@
+{% extends "master.html" %}
+{% block govde %}
+{% load static %}
+
+<link href="{% static 'styles.css' %}" rel="stylesheet">
+
+<div class="container mt-4">
+    <h2>Yeni İlan Ekle</h2>
+    <form method="post"     action="../newilan/">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="ilanNosu" class="form-label">İlan Numarası</label>
+            <input type="text" class="form-control" id="ilanNosu" name="ilanNosu" required>
+        </div>
+        <div class="mb-3">
+            <label for="sokagi" class="form-label">Sokak</label>
+            <input type="text" class="form-control" id="sokagi" name="sokagi" required>
+        </div>
+        <div class="mb-3">
+            <label for="fiyati" class="form-label">Fiyat</label>
+            <input type="number" class="form-control" id="fiyati" name="fiyati" required>
+        </div>
+        <div class="mb-3">
+            <label for="odaSayisi" class="form-label">Oda Sayısı</label>
+            <input type="text" class="form-control" id="odaSayisi" name="odaSayisi" required>
+        </div>
+        <div class="mb-3">
+            <label for="m2si" class="form-label">Metrekare (m²)</label>
+            <input type="number" class="form-control" id="m2si" name="m2si" required>
+        </div>
+        <div class="mb-3 form-check">
+            <input type="checkbox" class="form-check-input" id="aktiflik" name="aktiflik">
+            <label class="form-check-label" for="aktiflik">Aktif</label>
+        </div>
+        <button type="submit" class="btn btn-primary">İlanı Ekle</button>
+    </form>
+</div>
+
+{% endblock %}
+
