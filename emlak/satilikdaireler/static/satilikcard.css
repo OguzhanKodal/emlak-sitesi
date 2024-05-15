@@ -1,18 +1,22 @@
 .daire-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr); /* Her satırda 4 sütun */
-    gap: 20px; /* Kutular arası boşluk */
-    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5.5px; /* Kutular arası boşluk */
+    padding: 4x; /* Kutuların iç boşluğu */
+
 }
 
 .daire-card {
+    width: calc(25% - 10px); /* Her kart genişliğinin %25'i - padding */
+    margin-bottom: 13px; /* Kartlar arasına dikey boşluk */
+    padding: 10px;
+    box-sizing: border-box;
     background-color: #fff;
     border: 1px solid #ddd;
     border-radius: 10px;
     overflow: hidden;
     box-shadow: 0 2px 10px rgba(0,0,0,0.1);
     transition: transform 0.2s;
-    padding-bottom: 10px; /* Daha az padding */
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -50,8 +54,33 @@ p {
     gap: 4px; /* Butonlar arasında daha az boşluk */
 }
 
-.btn {
+
+
+.btn-outline-warning, .btn-outline-danger, .btn-outline-success, .btn-outline-info {
     flex: 1; /* Butonların esnekliğini ayarlar */
     padding: 5px 10px; /* Buton iç padding'ini azaltır */
     font-size: 0.8rem; /* Buton yazı fontunu küçültür */
 }
+
+
+.resim-slider {
+    position: relative;
+    width: 100%;
+    height: 400px;
+    overflow: hidden;
+}
+
+.slider-resim {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.slider-resim:first-child {
+    opacity: 1;
+}
+

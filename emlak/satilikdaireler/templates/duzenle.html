@@ -6,7 +6,7 @@
 
 <div class="container mt-4">
     <h2>İlanı Düzenle</h2>
-    <form method="post" action="{% url 'satilikdaireler:duzenle' ilanNo=ilan_id %}">
+    <form method="post"  action : "../duzenle/{{satilik.ilanNo}}">
         {% csrf_token %}
         <div class="mb-3">
             <label for="sokagi" class="form-label">Sokak</label>

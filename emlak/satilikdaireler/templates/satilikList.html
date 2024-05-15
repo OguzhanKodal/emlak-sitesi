@@ -1,40 +1,48 @@
 {% extends "master.html" %}
 {% block govde %}
-{% load static %}
+    {% load static %}
 
-<link href="{% static 'satilikcard.css' %}" rel="stylesheet">
+    <link href="{% static 'satilikcard.css' %}" rel="stylesheet">
+    <script src="{% static 'script.js' %}"></script>
 
-<div class="container mt-4">
-    <div class="row g-4">
-        <div class="col-12 mb-3">
-            <a href="{% url 'satilikdaireler:newilan' %}" class="btn btn-dark">İlan Ekle</a>
-        </div>
-    </div>
-    <div class="daire-grid">
-        {% for ev in satilikEv %}
-        <div class="daire-card">
-            <img src="{% static 'n3.png' %}" class="card-img-top resim" alt="Resim">
-            <div class="card-body">
-                <h5 class="card-title">{{ ev.odaSayi }}</h5>
-                <p class="card-text">{{ ev.fiyat }} TL</p>
-            </div>
-            <div class="daire-actions">
-                <div class="button-group">
-                    <a href="{% url 'satilikdaireler:evDetay' ilanNo=ev.id %}" class="btn btn-outline-info">Detay</a>
-                    <a href="{% url 'satilikdaireler:duzenle' ilanNo=ev.id %}" class="btn btn-outline-warning">Düzenle</a>
-                    <a href="{% url 'satilikdaireler:detayEkle' ilanNo=ev.id %}" class="btn btn-outline-success">Detay Ekle</a>
-                </div>
-                <div class="button-group">
-                    <form action="{% url 'satilikdaireler:satilik_listesi' %}" method="post" style="display:inline;">
-                        {% csrf_token %}
-                        <input type="hidden" name="sil" value="{{ ev.id }}">
-                        <button type="submit" class="btn btn-outline-danger">Sil</button>
-                    </form>
-                </div>
+    <div class="container mt-4">
+        <div class="row g-4 mb-3">
+            <div class="col-12 d-flex justify-content-between">
+                <a href="../satilikevler/newilan" class="btn btn-dark">İlan Ekle</a>
+                <a href="../satilikevler/favori/listesi" class="btn btn-dark">Favori Listem</a>
             </div>
         </div>
-        {% endfor %}
+        <div class="daire-grid">
+            {% for satilik in satilikEv %}
+                <a href="evDetay/{{satilik.id}}">
+                    <div class="daire-card">
+                        <div class="resim-slider">
+                            {% for resim in satilik.resimler.all %}
+                                <img src="{{ resim.resim.url }}" class="slider-resim">
+                            {% endfor %}
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Oda Sayısı: {{ satilik.odaSayi }}</h5>
+                            <p class="card-text">Fiyat: {{ satilik.fiyat }} TL</p>
+                            <p class="card-text">Sokak: {{ satilik.sokak }} </p>
+                        </div>
+                        <div class="daire-actions">
+                            <div class="button-group">
+                                <a href="evDetay/{{satilik.id}}" class="btn btn-outline-info">Detay</a>
+                                <a href="duzenle/{{satilik.id}}" class="btn btn-outline-warning">Düzenle</a>
+                                <a href="detayEkle/{{satilik.id}}" class="btn btn-outline-success">Detay Ekle</a>
+                            </div>
+                            <div class="button-group"> 
+                                <form class="" method="post" action="../satilikevler/">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="sil" value="{{ satilik.id }}">
+                                    <button type="submit" class="btn btn-outline-danger">Sil</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </a> 
+            {% endfor %}
+        </div>
     </div>
-</div>
-
 {% endblock %}

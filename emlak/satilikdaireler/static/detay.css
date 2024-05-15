@@ -1,0 +1,101 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+body {
+    font-family: 'Poppins', sans-serif;
+}
+
+.property-details {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 30px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+}
+
+.price,
+.ilan,
+.sokak {
+    font-size: 28px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.price {
+    color: #007bff;
+}
+
+.ilan {
+    color: #e60000;
+}
+
+.sokak {
+    color: #f1c602;
+}
+
+.detail-group {
+    margin-bottom: 20px;
+}
+
+.detail-group h4 {
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.detail-item {
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 5px;
+    display: flex;
+    align-items: center;
+}
+
+.detail-item i {
+    color: #007bff;
+    margin-right: 10px;
+}
+
+hr {
+    border-top: 1px solid #dee2e6;
+    margin: 20px 0; 
+}
+
+.carousel {
+    border-radius: 10px; 
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    height: 100%; 
+    overflow: hidden; /* Resimlerin taşmasını önlemek için ekleyin */
+}
+.carousel-inner {
+    height: 100%; /
+
+}
+.carousel-item {
+    display: flex; /* Resmi kutucuk içinde dikey hizalamak için ekleyin */
+    justify-content: center; /* Resmi yatayda hizalamak için ekleyin */
+    align-items: center; /* Resmi dikeyde hizalamak için ekleyin */
+}
+
+.carousel-item img {
+    max-width: 100%; 
+    height: auto; /* Resmin yüksekliğini ayarlamak için ekleyin */
+    object-fit: cover; /* Resmi kutucuğa sığdırmak için ekleyin */
+    background-color: rgb(240, 238, 255);
+    border-radius: 30px;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Favori Ekle butonunu küçültmek ve renklerini değiştirmek için özel stil */
+.favori-ekle-btn {
+    font-size: 0.8rem; /* Butonun yazı boyutunu küçült */
+    background-color: #ffc107; /* Sarı arka plan rengi */
+    border-color: #ffc107; /* Sarı kenarlık rengi */
+}
+
+.favori-ekle-btn:hover {
+    background-color: #1976d2; /* Mavi hover arka plan rengi */
+    border-color: #1976d2; /* Mavi hover kenarlık rengi */
+}
+
+
+

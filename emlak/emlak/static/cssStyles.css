@@ -1,26 +1,28 @@
+
 /* Temel Renkler */
 :root {
-    --primary-color: #0056b3; /* Daha koyu bir mavi tonu */
+    --primary-color-start: #5de0e6;
+    --primary-color-end: #004aad; /* Daha koyu bir mavi tonu */
     --secondary-color: #6c757d; /* Gri tonu */
-    --accent-color: #ffc107; /* Altın sarısı bir renk, vurgular için */
+    --accent-color: #07ff83; /* Altın sarısı bir renk, vurgular için */
 }
 
 /* Genel Stiller */
 body {
-    background-color: #fff4d2;
+    background-color: #ffffff;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: #333;
 }
 
 .navbar {
-    background-color: var(--primary-color);
+    background: linear-gradient(to right, var(--primary-color-start), var(--primary-color-end));
     color: #fff;
 }
 
 .navbar-brand img {
     transition: transform 0.3s ease;
-    width: 70px;
-    height: 70px;
+    width: 90px;
+    height: 90px;
     object-fit: cover;
     border-radius: 50%;
 }

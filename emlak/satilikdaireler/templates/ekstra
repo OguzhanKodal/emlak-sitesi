@@ -1,0 +1,282 @@
+def evDetay(request, ilanNo):
+
+    kullanici = satilikTakip.objects.get(id=ilanNo)
+    binaYaslari = satilikDetay.objects.filter(kullanici=kullanici)
+    katSayilari = satilikDetay.objects.filter(kullanici=kullanici)
+    katlari = satilikDetay.objects.filter(kullanici=kullanici)
+    isitmalari = satilikDetay.objects.filter(kullanici=kullanici)
+    ilanTarihleri = satilikDetay.objects.filter(kullanici=kullanici)
+    tapuDurumlari = satilikDetay.objects.filter(kullanici=kullanici)
+    esyalari = satilikDetay.objects.filter(kullanici=kullanici)
+    asonsorleri = satilikDetay.objects.filter(kullanici=kullanici)
+    balkonlari = satilikDetay.objects.filter(kullanici=kullanici)
+    otoparklari = satilikDetay.objects.filter(kullanici=kullanici)
+    aidatlari = satilikDetay.objects.filter(kullanici=kullanici)
+    
+    detay = {'daire': kullanici,  'binaYaslari' :binaYaslari, 
+             'katSayilari':katSayilari,'katlari':katlari, 'isitmalari':isitmalari,
+             'ilanTarihlari':ilanTarihleri, 'tapuDurumlari':tapuDurumlari,'esyalari':esyalari,
+             'asonsorleri':asonsorleri, 'balkonlari':balkonlari, 'otoparklari':otoparklari,
+             'aidatlari':aidatlari, }
+    dsablon = loader.get_template('evDetay.html')
+    return HttpResponse(dsablon.render(detay, request))
+
+
+
+    def evDetay(request, ilanNo):
+
+    kullanici = satilikTakip.objects.get(id=ilanNo)
+    binaYaslari = satilikDetay.objects.filter(kullanici=kullanici)
+    katSayilari = satilikDetay.objects.filter(kullanici=kullanici)
+    katlari = satilikDetay.objects.filter(kullanici=kullanici)
+    isitmalari = satilikDetay.objects.filter(kullanici=kullanici)
+    ilanTarihleri = satilikDetay.objects.filter(kullanici=kullanici)
+    tapuDurumlari = satilikDetay.objects.filter(kullanici=kullanici)
+    esyalari = satilikDetay.objects.filter(kullanici=kullanici)
+    asonsorleri = satilikDetay.objects.filter(kullanici=kullanici)
+    balkonlari = satilikDetay.objects.filter(kullanici=kullanici)
+    otoparklari = satilikDetay.objects.filter(kullanici=kullanici)
+    aidatlari = satilikDetay.objects.filter(kullanici=kullanici)
+    
+    detay = {'satilik': kullanici,  'binaYaslari' :binaYaslari, 
+             'katSayilari':katSayilari,'katlari':katlari, 'isitmalari':isitmalari,
+             'ilanTarihlari':ilanTarihleri, 'tapuDurumlari':tapuDurumlari,'esyalari':esyalari,
+             'asonsorleri':asonsorleri, 'balkonlari':balkonlari, 'otoparklari':otoparklari,
+             'aidatlari':aidatlari }
+    
+    dsablon = loader.get_template('evDetay.html')
+    return HttpResponse(dsablon.render(detay, request))
+
+
+
+{% extends "master.html" %} 
+{% load static %} 
+{% block baslik %} Ev Detayı {% endblock %}
+{% block govde %}
+
+<link href="{% static 'detay.css' %}" rel="stylesheet">
+
+<div class="container d-flex flex-column align-items-center justify-content-center vh-80">
+    <h2 class="mb-4">Ev Detayı</h2>
+    <div class="p-4" id="daireForm">
+        <div class="mb-3">
+            <label for="ilanNosu" class="form-label">İlan No</label>
+            <input type="text" class="form-control" id="ilanNosu" name="ilanNosu" value="{{ satilik.ilanNo }}" readonly />
+        </div>
+
+        <div class="mb-3">
+            <label for="fiyati" class="form-label">Fiyat</label>
+            <input type="text" class="form-control" id="fiyati" name="fiyati" value="{{ satilik.fiyat }}" readonly />
+        </div>
+
+        <div class="mb-3">
+            <label for="sokagi" class="form-label">Sokak</label>
+            <input type="text" class="form-control" id="sokagi" name="sokagi" value="{{ satilik.sokak }}" readonly />
+        </div>
+
+        <div class="mb-3">
+          <label for="isitmalari" class="form-label">Isıtma</label>
+          <input type="text" class="form-control" id="isitmalari" name="isitmalari" value="{{ kullanici.isitmalari}}" readonly />
+        </div>
+
+        <div class="mb-3">
+            <label for="ilanTarihleri" class="form-label">İlan Tarihi</label>
+            <div class="input-group">
+                {% for iT in ilanTarihleri %}
+                    <input type="text" class="form-control mb-2" value="{{ iT.ilanTarih|date:"Y-m-d" }}" readonly />
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label for="katlari" class="form-label">Kat Sayısı</label>
+            <div class="input-group">
+                {% for k in katlari %}
+                    <input type="text" class="form-control mb-2" value="{{ k.kat }}" readonly />
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="mb-3">
+          <label for="isitmalari" class="form-label">Isıtma</label>
+          <div class="input-group">
+              {% for i in isitmalari %}
+                  <input type="text" class="form-control mb-2" value="{{i.isitma}}" readonly />
+              {% endfor %}
+          </div>
+        </div>
+        
+        <div class="mb-3">
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" {% if satilik.aktiflik %}checked{% endif %} disabled />
+                <label class="form-check-label" for="aktiflik"> Aktif </label>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+
+
+@csrf_exempt
+def newilan(request):
+    hatalar = []
+    bilgi = {'new_ilan': "False", 'hatalistesi': hatalar}
+    
+    if request.user.is_authenticated == False:
+        return redirect("anasayfa")
+    
+    if request.method == 'POST':
+        ilanNo = request.POST.get('ilanNosu', '')
+        sokak = request.POST.get('sokagi', '')
+        fiyat = request.POST.get('fiyati', '')
+        odaSayi = request.POST.get('odaSayisi', '')
+        m2 = request.POST.get('m2si', '')
+        resim = request.FILES.get('daireResmi', False)
+        if resim != False:
+            if resim.name.split(".")[-1] in ['jpg', 'png']:
+                fs = FileSystemStorage()
+                yukle = fs.save('images/' + resim.name, resim)
+                resim_url = fs.url(yukle)
+            else:
+                hatalar.append("Sadece jpg veya png yüklenebilir!")
+        else:
+            hatalar.append("Resim boş olamaz!")
+
+        aktiflik = request.POST.get('aktiflik', False)
+        if aktiflik == "on":
+            aktiflik = True
+        
+        if len(hatalar) == 0:
+            newilan = satilikTakip(ilanNo=ilanNo, sokak=sokak, fiyat=fiyat,
+                                 odaSayi=odaSayi, m2=m2,
+                                aktiflik=aktiflik, resim=resim_url)
+            newilan.save()
+            bilgi['new_ilan'] = "True"
+        else:
+            bilgi['hatalistesi'] = hatalar
+    
+    newilansablon = loader.get_template('ilanEkle.html')
+    return HttpResponse(newilansablon.render(bilgi, request))
+
+
+
+
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+body {
+    font-family: 'Poppins', sans-serif;
+}
+
+.property-details {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.price,
+.ilan,
+.sokak {
+    font-size: 28px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.price {
+    color: #007bff;
+}
+
+.ilan {
+    color: #e60000;
+}
+
+.sokak {
+    color: #f1c602;
+}
+
+.detail-group {
+    margin-bottom: 20px;
+}
+
+.detail-group h4 {
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.detail-item {
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 5px;
+    display: flex;
+    align-items: center;
+}
+
+.detail-item i {
+    color: #007bff;
+    margin-right: 10px;
+}
+
+hr {
+    border-top: 1px solid #dee2e6;
+    margin: 20px 0;
+}
+
+.carousel {
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    height: 100%;
+    overflow: hidden; /* Resimlerin taşmasını önlemek için ekleyin */
+}
+
+.carousel-item {
+    display: flex; /* Resmi kutucuk içinde dikey hizalamak için ekleyin */
+    justify-content: center; /* Resmi yatayda hizalamak için ekleyin */
+    align-items: center; /* Resmi dikeyde hizalamak için ekleyin */
+}
+
+.carousel-item img {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto; /* Resmin genişliğini ayarlamak için ekleyin */
+    height: auto; /* Resmin yüksekliğini ayarlamak için ekleyin */
+    object-fit: contain;
+    background-color: rgb(240, 238, 255);
+    border-radius: 10px;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+}
+
+
+.carousel-control-prev,
+.carousel-control-next {
+    width: 70px;
+    height: 70px;
+    top: calc(50% - 20px);
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    width: 30px;
+    height: 30px;
+    background-size: 100%, 100%;
+    background-image: none;
+    border-radius: 50%;
+}
+
+.carousel-control-prev-icon:after {
+    content: '<';
+    font-size: 30px;
+    color: #007bff;
+}
+
+.carousel-control-next-icon:after {
+    content: '>';
+    font-size: 30px;
+    color: #007bff;
+}

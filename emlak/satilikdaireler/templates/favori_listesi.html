@@ -1,0 +1,63 @@
+{% extends "master.html" %}
+{% block govde %}
+
+<div class="container">
+    <div class="table-container">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">İlan No</th>
+                    <th scope="col">Sokak</th>
+                    <th scope="col">Eklenme Tarihi</th>
+                    <th scope="col">Detay</th>
+                    <th scope="col">Sil</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for favori in favoriler %}
+                    <tr>
+                        <th scope="row">{{ forloop.counter }}</th>
+                        <td>{{ favori.satilik_ilan.ilanNo }}</td>
+                        <td>{{ favori.satilik_ilan.sokak }}</td>
+                        <td>{{ favori.eklenme_tarihi }}</td>
+                        <td>
+                            <a href="{% url 'evDetay' ilanNo=favori.satilik_ilan.id %}">
+                                <button class="btn btn-primary">Detay</button>
+                            </a>
+                        </td>
+                        <td>
+                            <form method="post" action="{% url 'favori_listesi' %}">
+                                {% csrf_token %}
+                                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#silModal{{ favori.id }}">
+                                    <i class="bi bi-trash"></i> Sil
+                                </button>
+                                <input type="hidden" name="sil" value="{{ favori.id }}">
+                                <!-- Modal -->
+                                <div class="modal fade" id="silModal{{ favori.id }}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="staticBackdropLabel">Emin misiniz?</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                              #{{ favori.satilik_ilan.ilanNo }} No'lu İlanı Favorilerden Kaldırmak İstediğinize Emin Misiniz?
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hayır</button>
+                                                <button type="submit" class="btn btn-danger">Evet</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock %}

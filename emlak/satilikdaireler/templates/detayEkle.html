@@ -1,73 +1,155 @@
-{% extends "master.html" %}
+{% extends "master.html" %} {% block baslik %} Yeni Detay Ekle {% endblock %}
 {% block govde %}
-{% load static %}
+<div
+  class="container d-flex flex-column align-items-center justify-content-center vh-80"
+>
+  <h2 class="mb-4">Yeni Detay Bilgisini Giriniz</h2>
+  <form class="p-4" method="post" action:"../detayEkle/{{satilik.ilanNo}}"
+  style="border: 1px solid #ccc; border-radius: 10px" > {% csrf_token %}
 
-<link href="{% static 'styles.css' %}" rel="stylesheet">
-
-<div class="container mt-4">
-    <h2>Detay Ekle</h2>
-    <form method="post" action="{% url 'satilikdaireler:detayEkle' ilanNo=ilan_id %}">
-        {% csrf_token %}
-        <div class="mb-3">
-            <label for="binaYasi" class="form-label">Bina Yaşı</label>
-            <input type="number" class="form-control" id="binaYasi" name="binaYasi" required>
-        </div>
-        <div class="mb-3">
-            <label for="katSayisi" class="form-label">Kat Sayısı</label>
-            <input type="number" class="form-control" id="katSayisi" name="katSayisi" required>
-        </div>
-        <div class="mb-3">
-            <label for="kati" class="form-label">Bulunduğu Kat</label>
-            <input type="number" class="form-control" id="kati" name="kati" required>
-        </div>
-        <div class="mb-3">
-            <label for="isitmasi" class="form-label">Isıtma Tipi</label>
-            <input type="text" class="form-control" id="isitmasi" name="isitmasi" required>
-        </div>
-        <div class="mb-3">
-            <label for="otoparki" class="form-label">Otopark</label>
-            <input type="text" class="form-control" id="otoparki" name="otoparki" required>
-        </div>
-        <div class="mb-3">
-            <label for="ilanTarihi" class="form-label">İlan Tarihi</label>
-            <input type="date" class="form-control" id="ilanTarihi" name="ilanTarihi" required>
-        </div>
-        <div class="mb-3">
-            <label for="tapudurumu" class="form-label">Tapu Durumu</label>
-            <input type="text" class="form-control" id="tapudurumu" name="tapudurumu" required>
-        </div>
-        <div class="mb-3">
-            <label for="esyalimi" class="form-label">Eşyalı mı?</label>
-            <select class="form-control" id="esyalimi" name="esyalimi">
-                <option value="Evet">Evet</option>
-                <option value="Hayır">Hayır</option>
-            </select>
-        </div>
-        <div class="mb-3">
-            <label for="asonsormu" class="form-label">Asansör</label>
-            <select class="form-control" id="asonsormu" name="asonsormu">
-                <option value="Var">Var</option>
-                <option value="Yok">Yok</option>
-            </select>
-        </div>
-        <div class="mb-3">
-            <label for="balkonmu" class="form-label">Balkon</label>
-            <select class="form-control" id="balkonmu" name="balkonmu">
-                <option value="Var">Var</option>
-                <option value="Yok">Yok</option>
-            </select>
-        </div>
-        <div class="mb-3">
-            <label for="aidati" class="form-label">Aidat (TL)</label>
-            <input type="number" class="form-control" id="aidati" name="aidati" required>
-        </div>
-        <button type="submit" class="btn btn-primary">Detayları Ekle</button>
-    </form>
-    {% if guncellendimi == "True" %}
-    <div class="alert alert-success" role="alert">
-        Detaylar başarıyla eklendi!
+  <h2 class="mb-4">Ev Detayı</h2>
+  <form class="p-4" id="daireForm">
+    <div class="mb-3">
+      <label for="ilanNosu" class="form-label">Ilan Numarası</label>
+      <input
+        type="number"
+        class="form-control"
+        id="ilanNo"
+        name="ilanNo"
+        value="{{ satilik.ilanNo }}"
+        readonly
+      />
     </div>
-    {% endif %}
-</div>
 
+    <div class="mb-3">
+      <label for="sokagi" class="form-label">Sokak</label>
+      <input
+        type="text"
+        class="form-control"
+        id="sokagi"
+        name="sokagi"
+        value="{{ satilik.sokak }}"
+        readonly
+      />
+    </div>
+
+    <div class="mb-3">
+        <label for="binaYas" class="form-label">Bina Yaşı</label>
+        <input
+          type="number"
+          class="form-control"
+          id="binaYas"
+          name="binaYas"
+        />
+    </div>
+
+      <div class="mb-3">
+        <label for="katSayi" class="form-label">Kat sayısı</label>
+        <input
+          type="number"
+          class="form-control"
+          id="katSayi"
+          name="katSayi"
+        />
+    </div>
+  
+
+      <div class="mb-3">
+        <label for="kat" class="form-label">Kat</label>
+        <input
+          type="number"
+          class="form-control"
+          id="kat"
+          name="kat"
+        />
+    </div>
+
+
+    <div class="mb-3">
+      <label for="isitma" class="form-label">Isıtma</label>
+      <input
+        type="text"
+        class="form-control"
+        id="isitma"
+        name="isitma"
+      />
+    </div>
+
+
+    <div class="mb-3">
+        <label for="otopark" class="form-label">Otopark</label>
+        <input
+          type="text"
+          class="form-control"
+          id="otopark"
+          name="otopark"
+        />
+    </div>
+
+    <div class="mb-3">
+        <label for="ilanTarih" class="form-label">İlan Tarihi</label>
+        <input
+          type="date"
+          class="form-control"
+          id="ilanTarih"
+          name="ilanTarih"
+        />
+    </div>
+
+    <div class="mb-3">
+        <label for="tapuDurum" class="form-label">Tapu Durumu</label>
+        <input
+          type="text"
+          class="form-control"
+          id="tapuDurum"
+          name="tapuDurum"
+        />
+    </div>
+
+    <div class="mb-3">
+        <label for="esya" class="form-label">Eşyalı mı?</label>
+        <input
+          type="text"
+          class="form-control"
+          id="esya"
+          name="esya"
+        />
+    </div>
+
+    <div class="mb-3">
+        <label for="asonsor" class="form-label">Asonsor</label>
+        <input
+          type="text"
+          class="form-control"
+          id="asonsor"
+          name="asonsor"
+        />
+    </div>
+
+    <div class="mb-3">
+        <label for="balkon" class="form-label">Balkon</label>
+        <input
+          type="text"
+          class="form-control"
+          id="balkon"
+          name="balkon"
+        />
+    </div>
+
+    <div class="mb-3">
+        <label for="aidat" class="form-label">Aidat</label>
+        <input
+          type="text"
+          class="form-control"
+          id="aidat"
+          name="aidat"
+        />
+    </div>
+  
+
+    <div class="mb-3">
+      <button type="submit" class="btn btn-primary">KAYDET</button>
+    </div>
+  </form>
+</div>
 {% endblock %}
