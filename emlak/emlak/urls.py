@@ -34,10 +34,11 @@ urlpatterns = [
     path('', views.anasayfa, name = 'anasayfa'), # anasayfa fonksiyonunu çağırıyoruz
     path('kiralikevler/',include('kiralikdaireler.urls')),
     path('satilikevler/',include('satilikdaireler.urls')),
+    path('kurlar/', include('kurlar.urls')),
     path('anasayfa',views.anasayfa),
     path('admin/', admin.site.urls),
     path('login',views.user_login),
     path('register',views.user_register),
     path('logout',views.user_logout),
-    
+
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

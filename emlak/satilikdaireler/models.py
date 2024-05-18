@@ -5,8 +5,13 @@ from django.contrib.auth.models import User
 # Create your models here.
 
 class satilikTakip(models.Model):
-    ilanNo = models.IntegerField(default=0)
-    sokak = models.CharField(max_length=15)
+    ilanNo = models.IntegerField(null=True)
+    il = models.CharField(max_length=20)
+    ilce = models.CharField(max_length=20)
+    mahalle = models.CharField(max_length=20)
+    sokak = models.CharField(max_length=20)
+    apartman = models.CharField(max_length=20)
+    apartmanNo = models.IntegerField(null=True)
     fiyat = models.IntegerField(null=True)
     m2 = models.IntegerField(null=True)  
     aktiflik = models.BooleanField(null=True)
@@ -31,6 +36,7 @@ class satilikDetay(models.Model):
     balkon = models.CharField(max_length=20)
     otopark = models.CharField(max_length=20)
     aidat = models.IntegerField(null=True)
+    aciklama = models.TextField(null=True)
     kullanici = models.ForeignKey(satilikTakip, on_delete = models.CASCADE,
                                   related_name = 'kullanici', null=True)
     

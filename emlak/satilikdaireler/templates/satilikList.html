@@ -7,9 +7,15 @@
 
     <div class="container mt-4">
         <div class="row g-4 mb-3">
-            <div class="col-12 d-flex justify-content-between">
-                <a href="../satilikevler/newilan" class="btn btn-dark">İlan Ekle</a>
-                <a href="../satilikevler/favori/listesi" class="btn btn-dark">Favori Listem</a>
+            <div class="col-12 d-flex justify-content-between align-items-center">
+                <a href="../satilikevler/newilan" class="btn btn-primary">İlan Ekle</a>
+                <form method="get" action="{% url 'search' %}" class="d-flex">
+                    <input type="text" name="query" class="form-control" placeholder="Sokak Adı Ara">
+                    <input type="number" name="min_fiyat" class="form-control ms-2" placeholder="Min Fiyat">
+                    <input type="number" name="max_fiyat" class="form-control ms-2" placeholder="Max Fiyat">
+                    <button type="submit" class="btn btn-primary ms-2">Ara</button>
+                </form>
+                <a href="../satilikevler/favori/listesi" class="btn btn-primary">Favori Listem</a>
             </div>
         </div>
         <div class="daire-grid">

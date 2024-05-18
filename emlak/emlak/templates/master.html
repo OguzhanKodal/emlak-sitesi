@@ -9,7 +9,6 @@
     <title>Emlak Sitesi - Anasayfa</title>
     <link rel="stylesheet" type="text/css" href="{% static 'cssStyles.css' %}" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
-
 </head>
 <body>
     <nav class="navbar navbar-expand-md navbar-dark">
@@ -26,10 +25,10 @@
                         <a class="nav-link" aria-current="page" href="/">Anasayfa</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="/">Hakkımızda</a>
+                        <a class="nav-link" aria-current="page" href="/hakkimizda">Hakkımızda</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="">İletişim</a>
+                        <a class="nav-link" aria-current="page" href="/iletisim">İletişim</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a
@@ -46,6 +45,9 @@
                           <li><a class="dropdown-item" href="../satilikevler/">Satılık Evler</a></li>
                           <li><a class="dropdown-item" href="../kiralikevler/">Kiralık Evler</a></li>
                         </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/kurlar">Kurlar</a>
                     </li>
                     <!-- Diğer menü öğeleri buraya -->
                 </ul>
@@ -71,8 +73,5 @@
     </nav>
     {% block govde %} {% endblock %}
     <script src="{% static 'js/scripts.js' %}"></script>
-</body>
-</html>
-
 </body>
 </html>

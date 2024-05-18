@@ -10,6 +10,7 @@ from django.contrib.auth.decorators import login_required
 from .models import Favoriler
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
+from .forms import SearchForm
 
 
 def satilik_listesi(request):
@@ -37,6 +38,24 @@ def newilan(request):
     bilgi = {'new_ilan': False, 'hatalistesi': hatalar}
     
     if request.method == 'POST':
+        il = request.POST.get('ili', '')
+        if len(il) < 2:
+            hatalar.append("Ad 2 karakterden küçük olamaz!")
+        ilce = request.POST.get('ilcesi', '')
+        if len(ilce) < 2:
+            hatalar.append("Soyad 2 karakterden küçük olamaz!")
+        mahalle = request.POST.get('mahallesi', '')
+        if len(mahalle) < 2:
+            hatalar.append("Soyad 2 karakterden küçük olamaz!")
+
+        apartman = request.POST.get('apartmani', '')
+        if len(apartman) < 2:
+            hatalar.append("Ad 2 karakterden küçük olamaz!")
+
+        apartmanNo = request.POST.get('apartmanNosu', '')
+        if not apartmanNo.isdigit():
+            hatalar.append("Apartman numarası boş olamaz!")
+
         sokak = request.POST.get('sokagi', '')
         if len(sokak) < 2:
             hatalar.append("Ad 2 karakterden küçük olamaz!")
@@ -66,7 +85,8 @@ def newilan(request):
         if not hatalar:
             newilan = satilikTakip.objects.create(
                 ilanNo=ilanNo, sokak=sokak, fiyat=fiyat,
-                odaSayi=odaSayi, m2=m2, aktiflik=aktiflik
+                odaSayi=odaSayi, m2=m2, aktiflik=aktiflik, il=il, 
+                ilce=ilce, apartman=apartman, apartmanNo=apartmanNo, mahalle=mahalle
             )
             
             # Resimleri kaydet
@@ -107,9 +127,15 @@ def evDuzenle(request, ilanNo):
     if request.method == 'POST':
 
         satilik.sokak = request.POST.get('sokagi', '')
+        satilik.ilanNo = request.POST.get('ilanNosu', '')
+        satilik.il = request.POST.get('ili', '')
+        satilik.ilce = request.POST.get('ilcesi', '')
+        satilik.apartman = request.POST.get('apartmani', '')
+        satilik.apartmanNo = request.POST.get('apartmanNosu', '')
         satilik.fiyat = request.POST.get('fiyati', '')
         satilik.odaSayi = request.POST.get('odaSayisi', '')
         satilik.m2 = request.POST.get('m2si','')
+        satilik.mahalle = request.POST.get('mahallesi', '')
         aktiflik = request.POST.get('aktiflik', False)
         if aktiflik == "on":
             satilik.aktiflik = True
@@ -145,10 +171,11 @@ def detayEkle (request, ilanNo):
         asonsor= request.POST.get('asonsor', '')
         balkon = request.POST.get('balkon', '')
         aidat = request.POST.get('aidat', '')
+        aciklama = request.POST.get('aciklama', '')
 
         yeniDetay = satilikDetay(binaYas=binaYas, katSayi=katSayi, kat=kat, isitma=isitma,
                                 otopark=otopark, ilanTarih=ilanTarih, 
-                                tapuDurum=tapuDurum, esya=esya, 
+                                tapuDurum=tapuDurum, esya=esya, aciklama=aciklama,
                                 asonsor=asonsor,balkon=balkon,aidat=aidat, kullanici=satilik)
         yeniDetay.save()
 
@@ -183,3 +210,28 @@ def favori_listesi(request):
         'favoriler': favoriler
     }
     return render(request, 'favori_listesi.html', context)
+
+
+def search(request):
+    form = SearchForm()
+    results = satilikTakip.objects.all()
+    if request.GET:
+        form = SearchForm(request.GET)
+        if form.is_valid():
+            query = form.cleaned_data['query']
+            min_fiyat = form.cleaned_data['min_fiyat']
+            max_fiyat = form.cleaned_data['max_fiyat']
+
+            if query:
+                results = results.filter(sokak__icontains=query)
+            if min_fiyat is not None:
+                results = results.filter(fiyat__gte=min_fiyat)
+            if max_fiyat is not None:
+                results = results.filter(fiyat__lte=max_fiyat)
+    return render(request, 'search_results.html', {'form': form, 'results': results})
+
+
+def ilan_detay(request, ilan_id):
+    satilik = get_object_or_404(satilikTakip, id=ilan_id)
+    satilik_detay = get_object_or_404(satilikDetay, ilan=satilik)  # satilikDetay modelinde ilan alanını satilikTakip modeli ile ilişkilendirin
+    return render(request, 'evDetay.html', {'satilik': satilik, 'satilik_detay': satilik_detay})

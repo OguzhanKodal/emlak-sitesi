@@ -1,0 +1,37 @@
+{% extends "master.html" %}
+{% block govde %}
+    <div class="container mt-4">
+        <h2 class="text-center mb-4">Arama</h2>
+        <form method="get" action="{% url 'search' %}">
+            <div class="row">
+                <div class="col-md-4">
+                    {{ form.query.label_tag }}
+                    {{ form.query }}
+                </div>
+                <div class="col-md-3">
+                    {{ form.min_fiyat.label_tag }}
+                    {{ form.min_fiyat }}
+                </div>
+                <div class="col-md-3">
+                    {{ form.max_fiyat.label_tag }}
+                    {{ form.max_fiyat }}
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary mt-3">Ara</button>
+        </form>
+
+        {% if results %}
+            <h3 class="mt-4">Sonuçlar:</h3>
+            <ul class="list-group mt-3">
+                {% for ilan in results %}
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        {{ ilan.il }} / {{ ilan.ilce }} / {{ ilan.mahalle }} / {{ ilan.apartman }} - {{ ilan.fiyat }} TL
+                        <a href="{% url 'evDetay' ilan.id %}" class="btn btn-outline-info">Detay</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% elif request.GET %}
+            <p class="mt-4">Sonuç bulunamadı.</p>
+        {% endif %}
+    </div>
+{% endblock %}

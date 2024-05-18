@@ -14,6 +14,7 @@ urlpatterns = [
     path('favori/ekle/<int:ilan_id>/', views.favori_ekle, name='favori_ekle'),
     path('favori/listesi/', views.favori_listesi, name='favori_listesi'),  # Bu satırın olduğundan emin olun
     path('satilikevler/ev/<int:ilanNo>/', views.evDetay, name='evDetay'),
-
+    path('search/', views.search, name='search'),
+    path('evDetay/<int:ilan_id>/', views.ilan_detay, name='evDetay')
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

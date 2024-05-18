@@ -9,9 +9,31 @@
     <form method="post"  action : "../duzenle/{{satilik.ilanNo}}">
         {% csrf_token %}
         <div class="mb-3">
-            <label for="sokagi" class="form-label">Sokak</label>
+            <label for="ili" class="form-label">İl</label>
+            <input type="text" class="form-control" id="il" name="il" value="{{ satilik.il }}" required>
+        </div>
+        <div class="mb-3">
+            <label for="ilcesi" class="form-label">İlçe</label>
+            <input type="text" class="form-control" id="ilce" name="ilce" value="{{ satilik.ilce }}" required>
+        </div>
+        <div class="mb-3">
+            <label for="apartmani" class="form-label">Apartman Adı</label>
+            <input type="text" class="form-control" id="apartmani" name="apartmani" value="{{ satilik.apartman }}" required>
+        </div>
+        <div class="mb-3">
+            <label for="apartmanNo" class="form-label">Apartman No</label>
+            <input type="text" class="form-control" id="apartmanNo" name="apartmanNo" value="{{ satilik.apartmanNo }}" required>
+        </div>
+
+        <div class="mb-3">
+            <label for=
+        <div class="mb-3">
+            <label for="sokagi" class="form-label">Sokak&Cadde</label>
             <input type="text" class="form-control" id="sokagi" name="sokagi" value="{{ satilik.sokak }}" required>
         </div>
+        <div class="mb-3">
+            <label for="mahallesi" class="form-label">Mahalle</label>
+            <input type="text" class="form-control" id="mahallesi" name="mahallesi" value="{{ satilik.mahalle }}" required>
         <div class="mb-3">
             <label for="fiyati" class="form-label">Fiyat</label>
             <input type="number" class="form-control" id="fiyati" name="fiyati" value="{{ satilik.fiyat }}" required>

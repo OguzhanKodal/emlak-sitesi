@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'emlak',
     'kiralikdaireler',
     'satilikdaireler',
-    'django_bootstrap5'
+    'django_bootstrap5',
+    'kurlar'
 ]
 
 MIDDLEWARE = [
