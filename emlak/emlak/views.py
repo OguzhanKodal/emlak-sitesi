@@ -4,10 +4,37 @@ from django.template import loader
 from django.shortcuts import redirect 
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserCreationForm 
+from django.shortcuts import render, redirect
+from django.core.mail import send_mail
+from django.conf import settings
+from django.contrib import messages
 
 def anasayfa(request):
     sablon = loader.get_template('index.html')
     return HttpResponse(sablon.render(request = request))
+
+def hakkinda(request):
+    sablon = loader.get_template('hakkinda.html')
+    return HttpResponse(sablon.render(request = request))
+
+def iletisim(request):
+    sablon = loader.get_template('iletisim.html')
+    return HttpResponse(sablon.render(request = request))
+
+
+# views.py
+from django.shortcuts import render, redirect
+from .forms import ContactForm
+
+def iletisim_gonder(request):
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return render(request, 'contact_success.html')
+    else:
+        form = ContactForm()
+    return render(request, 'contact.html', {'form': form})
 
 
 def user_login(request):

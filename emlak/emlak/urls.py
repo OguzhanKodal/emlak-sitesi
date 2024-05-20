@@ -36,6 +36,8 @@ urlpatterns = [
     path('satilikevler/',include('satilikdaireler.urls')),
     path('kurlar/', include('kurlar.urls')),
     path('anasayfa',views.anasayfa),
+    path('hakkinda',views.hakkinda),
+    path('iletisim/', views.iletisim_gonder, name='iletisim_gonder'),
     path('admin/', admin.site.urls),
     path('login',views.user_login),
     path('register',views.user_register),

@@ -10,12 +10,15 @@ class satilikDetayInline(admin.TabularInline):
 @admin.register(satilikTakip)
 class satilikTakipAdmin(admin.ModelAdmin):
     inlines = [satilikResimInline, satilikDetayInline]
-    list_display = ("ilanNo", "il","ilce","apartman","apartmanNo","mahalle", "sokak", "fiyat", "aktiflik", "odaSayi", "m2")
+    list_display = ("ilanNo", "il","ilce","apartman","apartmanNo",
+                    "mahalle", "sokak", "fiyat", "aktiflik", "odaSayi", "m2")
     empty_value_display = "BOŞ"
 
 @admin.register(satilikDetay)
 class satilikDetayAdmin(admin.ModelAdmin):
-    list_display = ("binaYas", "katSayi", "kat", "isitma", "otopark", "ilanTarih", "tapuDurum", "esya", "asonsor", "balkon", "aidat","aciklama")
+    list_display = ("binaYas", "katSayi", "kat", "isitma", 
+                    "otopark", "ilanTarih", "tapuDurum", "esya", 
+                    "asonsor", "balkon", "aidat","aciklama")
     empty_value_display = "BOŞ"
 
 
@@ -25,8 +28,3 @@ class FavorilerAdmin(admin.ModelAdmin):
     list_filter = ('kullanici',)
     search_fields = ('kullanici__username', 'satilik_ilan__ilanNo')
 
-# Manuel olarak admin sitesine ekleme
-
-# @admin.register(satilikResim)
-# class satilikResimAdmin(admin.ModelAdmin):
-#     list_display = ("ilan", "id")

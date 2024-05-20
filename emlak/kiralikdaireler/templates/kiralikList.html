@@ -2,11 +2,11 @@
 {% block govde %}
     {% load static %}
 
-    <link href="{% static 'satilikcard.css' %}" rel="stylesheet">
+    <link href="{% static 'kiralikcard.css' %}" rel="stylesheet">
     {% if not request.user.is_authenticated %}
-        <link href="{% static 'satilikcard_guest.css' %}" rel="stylesheet">
+        <link href="{% static 'kiralikcard_guest.css' %}" rel="stylesheet">
     {% elif not request.user.is_superuser %}
-        <link href="{% static 'satilikcard_user.css' %}" rel="stylesheet">
+        <link href="{% static 'kiralikcard_user.css' %}" rel="stylesheet">
     {% endif %}
     <script src="{% static 'script.js' %}"></script>
 
@@ -15,40 +15,40 @@
         <div class="container mt-4 user-container">
             <div class="row g-4 mb-3">
                 <div class="col-12 d-flex justify-content-between align-items-center">
-                    <a href="../satilikevler/newilan" class="btn btn-primary">İlan Ekle</a>
-                    <form method="get" action="{% url 'search' %}" class="d-flex">
+                    <a href="../kiralikevler/knewilan" class="btn btn-primary">İlan Ekle</a>
+                    <form method="get" action="{% url 'ksearch' %}" class="d-flex">
                         <input type="text" name="query" class="form-control" placeholder="Sokak Adı Ara">
                         <input type="number" name="min_fiyat" class="form-control ms-2" placeholder="Min Fiyat">
                         <input type="number" name="max_fiyat" class="form-control ms-2" placeholder="Max Fiyat">
                         <button type="submit" class="btn btn-primary ms-2">Ara</button>
                     </form>
-                    <a href="../satilikevler/favori/listesi" class="btn btn-primary">Favori Listem</a>
+                    <a href="../kiralikevler/kfavori/listesi" class="btn btn-primary">Favori Listem</a>
                 </div>
             </div>
             <div class="daire-grid user-grid">
-                {% for satilik in satilikEv %}
-                    <a href="evDetay/{{satilik.id}}">
+                {% for kiralik in kiralikEv %}
+                    <a href="kevDetay/{{kiralik.id}}">
                         <div class="daire-card user-card">
                             <div class="resim-slider user-slider">
-                                {% for resim in satilik.resimler.all %}
+                                {% for resim in kiralik.resimler.all %}
                                     <img src="{{ resim.resim.url }}" class="slider-resim user-slider-resim">
                                 {% endfor %}
                             </div>
                             <div class="card-body user-card-body">
-                                <h5 class="card-title user-card-title">{{ satilik.odaSayi }}</h5>
-                                <p class="card-text user-card-text">{{ satilik.fiyat }} TL</p>
-                                <p class="card-text user-card-text">Sokak: {{ satilik.sokak }} </p>
+                                <h5 class="card-title user-card-title">{{ kiralik.odaSayi }}</h5>
+                                <p class="card-text user-card-text">{{ kiralik.fiyat }} TL</p>
+                                <p class="card-text user-card-text">Sokak: {{ kiralik.sokak }} </p>
                             </div>
                             <div class="daire-actions user-actions">
                                 <div class="button-group user-button-group">
-                                    <a href="evDetay/{{satilik.id}}" class="btn btn-outline-info">Detay</a>
-                                    <a href="duzenle/{{satilik.id}}" class="btn btn-outline-warning">Düzenle</a>
-                                    <a href="detayEkle/{{satilik.id}}" class="btn btn-outline-success">Detay Ekle</a>
+                                    <a href="kevDetay/{{kiralik.id}}" class="btn btn-outline-info">Detay</a>
+                                    <a href="kduzenle/{{kiralik.id}}" class="btn btn-outline-warning">Düzenle</a>
+                                    <a href="kdetayEkle/{{kiralik.id}}" class="btn btn-outline-success">Detay Ekle</a>
                                 </div>
                                 <div class="button-group user-button-group"> 
-                                    <form class="" method="post" action="../satilikevler/">
+                                    <form class="" method="post" action="../kiralikevler/">
                                         {% csrf_token %}
-                                        <input type="hidden" name="sil" value="{{ satilik.id }}">
+                                        <input type="hidden" name="sil" value="{{ kiralik.id }}">
                                         <button type="submit" class="btn btn-outline-danger">Sil</button>
                                     </form>
                                 </div>
@@ -63,7 +63,7 @@
         <div class="container mt-4 guest-container">
             <div class="row g-4 mb-3">
                 <div class="col-12 d-flex justify-content-between align-items-center">
-                    <form method="get" action="{% url 'search' %}" class="d-flex">
+                    <form method="get" action="{% url 'ksearch' %}" class="d-flex">
                         <input type="text" name="query" class="form-control" placeholder="Sokak Adı Ara">
                         <input type="number" name="min_fiyat" class="form-control ms-2" placeholder="Min Fiyat">
                         <input type="number" name="max_fiyat" class="form-control ms-2" placeholder="Max Fiyat">
@@ -72,18 +72,18 @@
                 </div>
             </div>
             <div class="daire-grid guest-grid">
-                {% for satilik in satilikEv %}
-                    <a href="evDetay/{{satilik.id}}">
+                {% for kiralik in kiralikEv %}
+                    <a href="kevDetay/{{kiralik.id}}">
                         <div class="daire-card guest-card">
                             <div class="resim-slider guest-slider">
-                                {% for resim in satilik.resimler.all %}
+                                {% for resim in kiralik.resimler.all %}
                                     <img src="{{ resim.resim.url }}" class="slider-resim guest-slider-resim">
                                 {% endfor %}
                             </div>
                             <div class="card-body guest-card-body">
-                                <h5 class="guest-card-title"><span>{{ satilik.odaSayi }}</span></h5>
-                                <p class="guest-card-text guest-price"><span>{{ satilik.fiyat }} TL</span></p>
-                                <p class="guest-card-text">Sokak: <span>{{ satilik.sokak }}</span></p>
+                                <h5 class="guest-card-title"><span>{{ kiralik.odaSayi }}</span></h5>
+                                <p class="guest-card-text guest-price"><span>{{ kiralik.fiyat }} TL</span></p>
+                                <p class="guest-card-text">Sokak: <span>{{ kiralik.sokak }}</span></p>
                             </div>
                         </div>
                     </a> 
@@ -95,28 +95,28 @@
         <div class="container mt-4 regular-container">
             <div class="row g-4 mb-3">
                 <div class="col-12 d-flex justify-content-between align-items-center">
-                    <form method="get" action="{% url 'search' %}" class="d-flex">
+                    <form method="get" action="{% url 'ksearch' %}" class="d-flex">
                         <input type="text" name="query" class="form-control" placeholder="Sokak Adı Ara">
                         <input type="number" name="min_fiyat" class="form-control ms-2" placeholder="Min Fiyat">
                         <input type="number" name="max_fiyat" class="form-control ms-2" placeholder="Max Fiyat">
                         <button type="submit" class="btn btn-primary ms-2">Ara</button>
                     </form>
-                    <a href="../satilikevler/favori/listesi" class="btn btn-primary">Favori Listem</a>
+                    <a href="../kiralikevler/kfavori/listesi" class="btn btn-primary">Favori Listem</a>
                 </div>
             </div>
             <div class="daire-grid regular-grid">
-                {% for satilik in satilikEv %}
-                    <a href="evDetay/{{satilik.id}}">
+                {% for kiralik in kiralik %}
+                    <a href="kevDetay/{{kiralik.id}}">
                         <div class="daire-card regular-card">
                             <div class="resim-slider regular-slider">
-                                {% for resim in satilik.resimler.all %}
+                                {% for resim in kiralik.resimler.all %}
                                     <img src="{{ resim.resim.url }}" class="slider-resim regular-slider-resim">
                                 {% endfor %}
                             </div>
                             <div class="card-body regular-card-body">
-                                <h5 class="guest-card-title"><span>{{ satilik.odaSayi }}</span></h5>
-                                <p class="guest-card-text guest-price"><span>{{ satilik.fiyat }} TL</span></p>
-                                <p class="guest-card-text">Sokak: <span>{{ satilik.sokak }}</span></p>
+                                <h5 class="guest-card-title"><span>{{ kiralik.odaSayi }}</span></h5>
+                                <p class="guest-card-text guest-price"><span>{{ kiralik.fiyat }} TL</span></p>
+                                <p class="guest-card-text">Sokak: <span>{{ kiralik.sokak }}</span></p>
                             </div>
                         </div>
                     </a> 

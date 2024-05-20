@@ -4,6 +4,10 @@
 {% block govde %}
     <div class="container mt-5">
         <h2 class="text-center mb-4">Döviz Kurları (TL Karşılığı)</h2>
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-dark mb-3">Kurları Güncelle</button>
+        </form>
         <div class="row justify-content-center">
             <div class="col-lg-8">
                 <table class="table table-hover table-bordered">
@@ -24,6 +28,13 @@
                         {% endfor %}
                     </tbody>
                 </table>
+                <!-- Not bölümü -->
+                <div class="alert alert-info mt-3" role="alert">
+                    <strong>Not:</strong> Haftasonu piyasalar kapalı olduğundan 
+                    Cuma gününün verisi gösterilir. 
+                    Kurlar, günlük piyasalar kapanmadan önce günde bir defa 
+                    saat 16:01 'de otomatik güncellenir.
+                </div>
             </div>
         </div>
     </div>

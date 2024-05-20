@@ -9,7 +9,6 @@ import uuid
 from django.contrib.auth.decorators import login_required
 from .models import Favoriler
 from django.shortcuts import render, redirect, get_object_or_404
-from django.contrib.auth.decorators import login_required
 from .forms import SearchForm
 
 
@@ -233,5 +232,5 @@ def search(request):
 
 def ilan_detay(request, ilan_id):
     satilik = get_object_or_404(satilikTakip, id=ilan_id)
-    satilik_detay = get_object_or_404(satilikDetay, ilan=satilik)  # satilikDetay modelinde ilan alanını satilikTakip modeli ile ilişkilendirin
+    satilik_detay = get_object_or_404(satilikDetay, ilan=satilik)  
     return render(request, 'evDetay.html', {'satilik': satilik, 'satilik_detay': satilik_detay})
