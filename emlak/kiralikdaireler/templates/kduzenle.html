@@ -6,27 +6,24 @@
 
 <div class="container mt-4">
     <h2>İlanı Düzenle</h2>
-    <form method="post"  action : "../kduzenle/{{kiralik.ilanNo}}">
+    <form method="post"  action : "../duzenle/{{kiralik.ilanNo}}">
         {% csrf_token %}
         <div class="mb-3">
             <label for="ili" class="form-label">İl</label>
-            <input type="text" class="form-control" id="il" name="il" value="{{ kiralik.il }}" required>
+            <input type="text" class="form-control" id="ili" name="ili" value="{{ kiralik.il }}" required>
         </div>
         <div class="mb-3">
             <label for="ilcesi" class="form-label">İlçe</label>
-            <input type="text" class="form-control" id="ilce" name="ilce" value="{{ kiralik.ilce }}" required>
+            <input type="text" class="form-control" id="ilcesi" name="ilcesi" value="{{ kiralik.ilce }}" required>
         </div>
         <div class="mb-3">
             <label for="apartmani" class="form-label">Apartman Adı</label>
             <input type="text" class="form-control" id="apartmani" name="apartmani" value="{{ kiralik.apartman }}" required>
         </div>
         <div class="mb-3">
-            <label for="apartmanNo" class="form-label">Apartman No</label>
-            <input type="text" class="form-control" id="apartmanNo" name="apartmanNo" value="{{ kiralik.apartmanNo }}" required>
+            <label for="apartmanNosu" class="form-label">Apartman No</label>
+            <input type="text" class="form-control" id="apartmanNosu" name="apartmanNosu" value="{{ kiralik.apartmanNo }}" required>
         </div>
-
-        <div class="mb-3">
-            <label for=
         <div class="mb-3">
             <label for="sokagi" class="form-label">Sokak&Cadde</label>
             <input type="text" class="form-control" id="sokagi" name="sokagi" value="{{ kiralik.sokak }}" required>
@@ -34,6 +31,7 @@
         <div class="mb-3">
             <label for="mahallesi" class="form-label">Mahalle</label>
             <input type="text" class="form-control" id="mahallesi" name="mahallesi" value="{{ kiralik.mahalle }}" required>
+        </div>
         <div class="mb-3">
             <label for="fiyati" class="form-label">Fiyat</label>
             <input type="number" class="form-control" id="fiyati" name="fiyati" value="{{ kiralik.fiyat }}" required>
@@ -45,6 +43,10 @@
         <div class="mb-3">
             <label for="m2si" class="form-label">Metrekare (m²)</label>
             <input type="number" class="form-control" id="m2si" name="m2si" value="{{ kiralik.m2 }}" required>
+        </div>
+        <div class="mb-3">
+            <label for="ilanNosu" class="form-label">İlan No</label>
+            <input type="number" class="form-control" id="ilanNosu" name="ilanNosu" value="{{ kiralik.ilanNo }}" required>
         </div>
         <div class="mb-3 form-check">
             <input type="checkbox" class="form-check-input" id="aktiflik" name="aktiflik" {% if kiralik.aktiflik %}checked{% endif %}>

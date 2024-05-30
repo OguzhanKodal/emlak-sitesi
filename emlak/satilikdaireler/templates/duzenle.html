@@ -10,23 +10,20 @@
         {% csrf_token %}
         <div class="mb-3">
             <label for="ili" class="form-label">İl</label>
-            <input type="text" class="form-control" id="il" name="il" value="{{ satilik.il }}" required>
+            <input type="text" class="form-control" id="ili" name="ili" value="{{ satilik.il }}" required>
         </div>
         <div class="mb-3">
             <label for="ilcesi" class="form-label">İlçe</label>
-            <input type="text" class="form-control" id="ilce" name="ilce" value="{{ satilik.ilce }}" required>
+            <input type="text" class="form-control" id="ilcesi" name="ilcesi" value="{{ satilik.ilce }}" required>
         </div>
         <div class="mb-3">
             <label for="apartmani" class="form-label">Apartman Adı</label>
             <input type="text" class="form-control" id="apartmani" name="apartmani" value="{{ satilik.apartman }}" required>
         </div>
         <div class="mb-3">
-            <label for="apartmanNo" class="form-label">Apartman No</label>
-            <input type="text" class="form-control" id="apartmanNo" name="apartmanNo" value="{{ satilik.apartmanNo }}" required>
+            <label for="apartmanNosu" class="form-label">Apartman No</label>
+            <input type="text" class="form-control" id="apartmanNosu" name="apartmanNosu" value="{{ satilik.apartmanNo }}" required>
         </div>
-
-        <div class="mb-3">
-            <label for=
         <div class="mb-3">
             <label for="sokagi" class="form-label">Sokak&Cadde</label>
             <input type="text" class="form-control" id="sokagi" name="sokagi" value="{{ satilik.sokak }}" required>
@@ -34,6 +31,7 @@
         <div class="mb-3">
             <label for="mahallesi" class="form-label">Mahalle</label>
             <input type="text" class="form-control" id="mahallesi" name="mahallesi" value="{{ satilik.mahalle }}" required>
+        </div>
         <div class="mb-3">
             <label for="fiyati" class="form-label">Fiyat</label>
             <input type="number" class="form-control" id="fiyati" name="fiyati" value="{{ satilik.fiyat }}" required>
@@ -45,6 +43,10 @@
         <div class="mb-3">
             <label for="m2si" class="form-label">Metrekare (m²)</label>
             <input type="number" class="form-control" id="m2si" name="m2si" value="{{ satilik.m2 }}" required>
+        </div>
+        <div class="mb-3">
+            <label for="ilanNosu" class="form-label">İlan No</label>
+            <input type="number" class="form-control" id="ilanNosu" name="ilanNosu" value="{{ satilik.ilanNo }}" required>
         </div>
         <div class="mb-3 form-check">
             <input type="checkbox" class="form-check-input" id="aktiflik" name="aktiflik" {% if satilik.aktiflik %}checked{% endif %}>

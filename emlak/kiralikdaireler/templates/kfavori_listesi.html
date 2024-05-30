@@ -18,11 +18,11 @@
                 {% for kfavori in kfavoriler %}
                     <tr>
                         <th scope="row">{{ forloop.counter }}</th>
-                        <td>{{ favori.kiralik_ilan.ilanNo }}</td>
-                        <td>{{ favori.kiralik_ilan.sokak }}</td>
-                        <td>{{ favori.eklenme_tarihi }}</td>
+                        <td>{{ kfavori.kiralik_ilan.ilanNo }}</td>
+                        <td>{{ kfavori.kiralik_ilan.sokak }}</td>
+                        <td>{{ kfavori.eklenme_tarihi }}</td>
                         <td>
-                            <a href="{% url 'kevDetay' ilanNo=favori.kiralik_ilan.id %}">
+                            <a href="{% url 'kevDetay' ilanNo=kfavori.kiralik_ilan.id %}">
                                 <button class="btn btn-primary">Detay</button>
                             </a>
                         </td>
